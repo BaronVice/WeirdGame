@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Text;
 
 namespace WeirdGame.GraphicObjects
@@ -16,6 +17,12 @@ namespace WeirdGame.GraphicObjects
             g.DrawEllipse(new Pen(Color.Red, 2), -30, -30, 60, 60);
         }
 
+        public override GraphicsPath GetGraphicsPath()
+        {
+            var path = base.GetGraphicsPath();
+            path.AddEllipse(-10, -10, 20, 20);
+            return path;
+        }
 
     }
 }

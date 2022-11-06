@@ -32,6 +32,7 @@ namespace WeirdGame
             this.components = new System.ComponentModel.Container();
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtLogs = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,11 +52,20 @@ namespace WeirdGame
             this.timer1.Interval = 30;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // txtLogs
+            // 
+            this.txtLogs.Location = new System.Drawing.Point(1073, 12);
+            this.txtLogs.Name = "txtLogs";
+            this.txtLogs.Size = new System.Drawing.Size(275, 426);
+            this.txtLogs.TabIndex = 1;
+            this.txtLogs.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1354, 450);
+            this.Controls.Add(this.txtLogs);
             this.Controls.Add(this.pbMain);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -68,6 +78,7 @@ namespace WeirdGame
 
         private System.Windows.Forms.PictureBox pbMain;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.RichTextBox txtLogs;
     }
 }
 

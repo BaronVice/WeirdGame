@@ -21,11 +21,22 @@ namespace WeirdGame
         {
             InitializeComponent();
 
-            marker = new Marker(pbMain.Width / 2 + 100, pbMain.Height / 2 + 100, 0);
-            objects.Add(marker);
-
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
             objects.Add(player);
+
+            player.OnOverlap += (p, obj) =>
+            {
+                txtLogs.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Игрок пересекся с {obj}\n" + txtLogs.Text;
+            };
+
+            player.OnMarkerOverlap += (m) =>
+            {
+                objects.Remove(m);
+                marker = null;
+            };
+
+            marker = new Marker(pbMain.Width / 2 + 100, pbMain.Height / 2 + 100, 0);
+            objects.Add(marker);
 
             objects.Add(new CustomRectangle(100, 100, 45));
             objects.Add(new CustomRectangle(300, 300, 115));
@@ -38,7 +49,20 @@ namespace WeirdGame
             // Заливка фона
             graphic.Clear(Color.White);
 
-            foreach(BaseObjects obj in objects)
+            updatePlayer();
+
+            // Пересечение
+            foreach(var obj in objects.ToList())
+            {
+                if (obj != player && player.Overlaps(obj, graphic))
+                {
+                    player.Overlap(obj);
+                    obj.Overlap(player);
+                }
+            }
+
+            // Прорисовка
+            foreach(var obj in objects)
             {
                 graphic.Transform = obj.GetTransform();
                 obj.Render(graphic);
@@ -46,24 +70,44 @@ namespace WeirdGame
 
         }
 
+        private void updatePlayer()
+        {
+            if (marker != null)
+            {
+                float dx = marker.X - player.X;
+                float dy = marker.Y - player.Y;
+
+                float distance = MathF.Sqrt(dx * dx + dy * dy);
+                dx /= distance;
+                dy /= distance;
+
+                player.vX += dx * 0.8f;
+                player.vY += dy * 0.8f;
+
+                player.Angle = 90 - MathF.Atan2(player.vX, player.vY) * 180 / MathF.PI;
+            }
+
+            player.vX += -player.vX * 0.1f;
+            player.vY += -player.vY * 0.1f;
+
+            player.X += player.vX;
+            player.Y += player.vY;
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-            float dx = marker.X - player.X;
-            float dy = marker.Y - player.Y;
-
-            float distance = MathF.Sqrt(dx * dx + dy * dy);
-            dx /= distance;
-            dy /= distance;
-
-            player.X += dx * 2;
-            player.Y += dy * 2;
-
             pbMain.Invalidate();
 
         }
 
         private void pbMain_MouseClick(object sender, MouseEventArgs e)
         {
+            if (marker == null)
+            {
+                marker = new Marker(0, 0, 0);
+                objects.Add(marker);
+            }
+
             marker.X = e.X;
             marker.Y = e.Y;
         }
