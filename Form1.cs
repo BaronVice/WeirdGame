@@ -16,6 +16,7 @@ namespace WeirdGame
         Player player;
         Marker marker;
         List<BaseObjects> objects = new List<BaseObjects>();
+        int score = 0;
 
         public Form1()
         {
@@ -33,6 +34,7 @@ namespace WeirdGame
             {
                 objects.Remove(m);
                 marker = null;
+                lblScore.Text = $"Очки: {++score}";
             };
 
             marker = new Marker(pbMain.Width / 2 + 100, pbMain.Height / 2 + 100, 0);

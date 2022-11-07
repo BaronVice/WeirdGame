@@ -33,6 +33,7 @@ namespace WeirdGame
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtLogs = new System.Windows.Forms.RichTextBox();
+            this.lblScore = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,17 +61,29 @@ namespace WeirdGame
             this.txtLogs.TabIndex = 1;
             this.txtLogs.Text = "";
             // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblScore.Location = new System.Drawing.Point(955, 25);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(97, 32);
+            this.lblScore.TabIndex = 2;
+            this.lblScore.Text = "Очки: 0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1354, 450);
+            this.Controls.Add(this.lblScore);
             this.Controls.Add(this.txtLogs);
             this.Controls.Add(this.pbMain);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -79,6 +92,7 @@ namespace WeirdGame
         private System.Windows.Forms.PictureBox pbMain;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.RichTextBox txtLogs;
+        private System.Windows.Forms.Label lblScore;
     }
 }
 
