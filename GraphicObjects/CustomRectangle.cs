@@ -7,12 +7,16 @@ namespace WeirdGame.GraphicObjects
 {
     class CustomRectangle : BaseObjects
     {
-        public CustomRectangle(float x, float y, float angle) : base(x, y, angle){}
+        public CustomRectangle()
+        {
+            base.X = -200;
+            base.Y = 250;
+            base.Angle = 0;
+        }
 
         public override void Render(Graphics g)
         {
-            g.FillRectangle(new SolidBrush(Color.Yellow), -50, -30, 100, 60);
-            g.DrawRectangle(new Pen(Color.Red, 2), -50, -30, 100, 60);
+            g.FillRectangle(new SolidBrush(Color.Black), -100, -250, 200, 500);
         }
     }
 }

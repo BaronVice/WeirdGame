@@ -15,13 +15,16 @@ namespace WeirdGame
     {
         Player player;
         Marker marker;
-        Apple apple;
+        CustomRectangle rectangle;
         List<BaseObjects> objects = new List<BaseObjects>();
         int score = 0;
 
         public Form1()
         {
             InitializeComponent();
+
+            rectangle = new CustomRectangle();
+            objects.Add(rectangle);
 
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
             objects.Add(player);
@@ -50,6 +53,8 @@ namespace WeirdGame
             objects.Add(new Apple());
             objects.Add(new Apple());
 
+
+
             //objects.Add(new CustomRectangle(100, 100, 45));
             //objects.Add(new CustomRectangle(300, 300, 115));
         }
@@ -62,6 +67,7 @@ namespace WeirdGame
             graphic.Clear(Color.White);
 
             updatePlayer();
+            updateRectangle();
 
             // Пересечение
             foreach(var obj in objects.ToList())
@@ -81,7 +87,14 @@ namespace WeirdGame
             }
 
         }
-
+        private void updateRectangle()
+        {
+            rectangle.X += 5;
+            if (rectangle.X > 1280)
+            {
+                rectangle.X = -200;
+            }
+        }
         private void updatePlayer()
         {
             if (marker != null)
