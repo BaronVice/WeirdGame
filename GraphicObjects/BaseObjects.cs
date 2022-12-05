@@ -13,6 +13,8 @@ namespace WeirdGame.GraphicObjects
         public float Angle;
         public Action<BaseObjects, BaseObjects> OnOverlap;
 
+        public BaseObjects() { }
+
         public BaseObjects(float x, float y, float angle)
         {
             X = x;

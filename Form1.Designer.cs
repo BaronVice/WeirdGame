@@ -64,6 +64,7 @@ namespace WeirdGame
             // lblScore
             // 
             this.lblScore.AutoSize = true;
+            this.lblScore.BackColor = System.Drawing.Color.White;
             this.lblScore.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblScore.Location = new System.Drawing.Point(955, 25);
             this.lblScore.Name = "lblScore";

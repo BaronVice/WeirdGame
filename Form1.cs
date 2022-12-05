@@ -15,6 +15,7 @@ namespace WeirdGame
     {
         Player player;
         Marker marker;
+        Apple apple;
         List<BaseObjects> objects = new List<BaseObjects>();
         int score = 0;
 
@@ -27,6 +28,13 @@ namespace WeirdGame
 
             player.OnOverlap += (p, obj) =>
             {
+                if (obj is Apple)
+                {
+                    objects.Remove(obj);
+                    lblScore.Text = $"Очки: {++score}";
+                    objects.Add(new Apple());
+                }
+
                 txtLogs.Text = $"[{DateTime.Now:HH:mm:ss:ff}] Игрок пересекся с {obj}\n" + txtLogs.Text;
             };
 
@@ -34,14 +42,16 @@ namespace WeirdGame
             {
                 objects.Remove(m);
                 marker = null;
-                lblScore.Text = $"Очки: {++score}";
             };
 
             marker = new Marker(pbMain.Width / 2 + 100, pbMain.Height / 2 + 100, 0);
             objects.Add(marker);
 
-            objects.Add(new CustomRectangle(100, 100, 45));
-            objects.Add(new CustomRectangle(300, 300, 115));
+            objects.Add(new Apple());
+            objects.Add(new Apple());
+
+            //objects.Add(new CustomRectangle(100, 100, 45));
+            //objects.Add(new CustomRectangle(300, 300, 115));
         }
 
         private void pbMain_Paint(object sender, PaintEventArgs e)
