@@ -11,6 +11,11 @@ namespace WeirdGame.GraphicObjects
         public float X;
         public float Y;
         public float Angle;
+
+        public bool inBlack = false;
+        public SolidBrush blackBrush = new SolidBrush(Color.White);
+        public Pen blackPen = new Pen(Color.Gray, 2);
+
         public Action<BaseObjects, BaseObjects> OnOverlap;
 
         public BaseObjects() { }
@@ -21,7 +26,7 @@ namespace WeirdGame.GraphicObjects
             Y = y;
             Angle = angle;
         }
-        
+
         public virtual void Render(Graphics g){}
 
         public Matrix GetTransform()

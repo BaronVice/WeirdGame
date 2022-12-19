@@ -8,6 +8,9 @@ namespace WeirdGame.GraphicObjects
 {
     class Apple : BaseObjects
     {
+        public static SolidBrush myBrush = new SolidBrush(Color.Green);
+        public static Pen myPen = new Pen(Color.Aqua, 2);
+
         private Random rnd = new Random();
         public Apple(){
             base.X = rnd.Next(30, 1025);
@@ -17,8 +20,16 @@ namespace WeirdGame.GraphicObjects
 
         public override void Render(Graphics g)
         {
-            g.FillEllipse(new SolidBrush(Color.Green), -20, -20, 40, 40);
-            g.DrawEllipse(new Pen(Color.Aqua, 2), -20, -20, 40, 40);
+            if (inBlack)
+            {
+                g.FillEllipse(blackBrush, -20, -20, 40, 40);
+                g.DrawEllipse(blackPen, -20, -20, 40, 40);
+            }
+            else
+            {
+                g.FillEllipse(myBrush, -20, -20, 40, 40);
+                g.DrawEllipse(myPen, -20, -20, 40, 40);
+            }
         }
 
         public override GraphicsPath GetGraphicsPath()

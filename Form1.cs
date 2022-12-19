@@ -52,11 +52,6 @@ namespace WeirdGame
 
             objects.Add(new Apple());
             objects.Add(new Apple());
-
-
-
-            //objects.Add(new CustomRectangle(100, 100, 45));
-            //objects.Add(new CustomRectangle(300, 300, 115));
         }
 
         private void pbMain_Paint(object sender, PaintEventArgs e)
@@ -69,9 +64,18 @@ namespace WeirdGame
             updatePlayer();
             updateRectangle();
 
+
             // Пересечение
             foreach(var obj in objects.ToList())
             {
+                if (obj != rectangle)
+                {
+                    if (rectangle.Overlaps(obj, graphic))
+                        rectangle.changeColor(obj);
+                    else
+                        rectangle.restoreColors(obj);
+                }
+
                 if (obj != player && player.Overlaps(obj, graphic))
                 {
                     player.Overlap(obj);
